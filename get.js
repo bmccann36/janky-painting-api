@@ -1,15 +1,15 @@
 import * as dynamoDbLib from "./libs/dynamodb-lib";
 import { success, failure } from "./libs/response-lib";
+import moment from 'moment'
 
 export async function main(event, context, callback) {
+
+  // const time = 1528642443
+
   const params = {
-    TableName: process.env.tableName,
-    // 'Key' defines the partition key and sort key of the item to be retrieved
-    // - 'userId': Identity Pool identity id of the authenticated user
-    // - 'noteId': path parameter
+    TableName: 'janky-posts',
     Key: {
-      userId: event.requestContext.identity.cognitoIdentityId,
-      noteId: event.pathParameters.id
+      'post-time': 1528642443
     }
   };
 
@@ -25,3 +25,9 @@ export async function main(event, context, callback) {
     callback(null, failure({ status: false }));
   }
 }
+
+
+main({}, null, (err, success) => {
+  if (err) console.log(err)
+  if (success) console.log(success)
+})

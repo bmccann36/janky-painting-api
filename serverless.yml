@@ -1,8 +1,8 @@
-service: notes-app-2-api
+service: janky-painting
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
-  - serverless-webpack
+  # - serverless-webpack
   - serverless-offline
 
 custom:
@@ -47,8 +47,7 @@ provider:
         - dynamodb:DeleteItem
       # Restrict our IAM role permissions to
       # the specific table for the stage
-      Resource:
-        - "Fn::GetAtt": [ NotesTable, Arn ]
+      Resource: "arn:aws:dynamodb:us-east-1:466357709346:table/janky-posts"
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
@@ -76,7 +75,7 @@ functions:
           path: notes/{id}
           method: get
           cors: true
-          authorizer: aws_iam
+          # authorizer: aws_iam
 
   list:
     # Defines an HTTP API endpoint that calls the main function in list.js
@@ -85,10 +84,10 @@ functions:
     handler: list.main
     events:
       - http:
-          path: notes
+          path: posts
           method: get
           cors: true
-          authorizer: aws_iam
+          # authorizer: aws_iam
 
   update:
     # Defines an HTTP API endpoint that calls the main function in update.js
