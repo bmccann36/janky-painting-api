@@ -16,6 +16,8 @@ service: janky-painting-api # NOTE: update this with your service name
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 # frameworkVersion: "=X.X.X"
+plugins:
+  - serverless-offline
 
 custom:
   defaultStage: staging
@@ -48,18 +50,17 @@ provider:
 #    variable1: value1
 
 # you can add packaging information here
-#package:
+package:
 #  include:
 #    - include-me.js
 #    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
+ exclude:
+   - env.yml
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
-
+  list:
+    handler: routes/list.main
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details

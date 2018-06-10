@@ -1,0 +1,26 @@
+{
+  "name": "janky-painting-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmccann36/janky-painting-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bmccann36/janky-painting-api/issues"
+  },
+  "homepage": "https://github.com/bmccann36/janky-painting-api#readme",
+  "dependencies": {
+    "chalk": "^2.4.1"
+  },
+  "devDependencies": {
+    "serverless-offline": "^3.25.4"
+  }
+}

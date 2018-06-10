@@ -1,6 +1,11 @@
 'use strict';
 
-module.exports.hello = (event, context, callback) => {
+const chalk = require('chalk')
+
+module.exports.main = (event, context, callback) => {
+
+  console.log('test variable: ', chalk.magenta(process.env.TEST_VAR))
+
   const response = {
     statusCode: 200,
     body: JSON.stringify({
