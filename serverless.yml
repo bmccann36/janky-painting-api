@@ -30,9 +30,15 @@ provider:
   environment: ${file(env.yml):${self:provider.stage}}
 
 # you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+      # Restrict our IAM role permissions to
+      # the specific table for the stage
+      Resource: "arn:aws:dynamodb:us-east-1:466357709346:table/janky-posts-${self:provider.stage}"
 #        - "s3:ListBucket"
 #      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
 #    - Effect: "Allow"
@@ -61,13 +67,10 @@ package:
 functions:
   list:
     handler: routes/list.main
-#    The following are a few example events you can configure
-#    NOTE: Please make sure to change your handler code to work with those events
-#    Check the event documentation for details
-#    events:
-#      - http:
-#          path: users/create
-#          method: get
+    events:
+     - http:
+         path: posts
+         method: get
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
 #      - sns: greeter-topic
