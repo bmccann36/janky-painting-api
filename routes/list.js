@@ -6,6 +6,8 @@ module.exports.main = (event, context, callback) => {
 
   console.log('test variable: ', chalk.magenta(process.env.TEST_VAR))
 
+  console.log('arbitrary change')
+
   const response = {
     statusCode: 200,
     body: JSON.stringify({
